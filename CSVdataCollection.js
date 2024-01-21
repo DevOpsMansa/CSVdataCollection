@@ -177,19 +177,19 @@ Code incomplete as the 0 row is not being console logged out -*** Fix**
  */
 
 //declaring resulting object
-let person = {};
-let persons = []; 
+let worker = {};
+let workers = []; 
 //go for all rows in table except the first one
 for (let i = 1; i < table.length; i++){
-    person = {};
+    worker = {};
     for(let j = 0; j < table[0].length; j++){
 //create an object that has "key" as j element in 0 row and "value" as j-element in i row
-    person[table[0][j].toLowerCase()] = table[i][j];
+    worker[table[0][j].toLowerCase()] = table[i][j];
     }
-    //add person at the end of our resulting array
-    persons.push(person);
+//add worker at the end of our resulting array
+    workers.push(worker);
 }
-console.log(persons);
+console.log(workers);
 // make sure part 2 is NOT commented when running the code so that "table will not have to be decleared again"
 
 console.log(`
