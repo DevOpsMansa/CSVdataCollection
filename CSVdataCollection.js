@@ -96,6 +96,8 @@ becomes
  ["98", "Bill", "Doctor’s Assistant", "26"]]
  */
 
+// part 2
+
 // variable decleared for data input
  const data = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry-Cook,19\n63,Blaine,'Quiz-Master',58\n98,Bill,Doctor,26`;
 
@@ -109,7 +111,7 @@ becomes
  }
  console.log(rows);
 
-// OR
+// OR - answer option 2
 
 // MISSING LAST ROW ON THE CODE -- FIX THAT
 
@@ -173,9 +175,10 @@ Important: While this functionality can be built into the original CSV parser yo
 */
 
 /*
-Code incomplete as the 0 row is not being console logged out -*** Fix**
+Code incomplete as the 0 row is not being console logged out when you use answer option 2 -*** Fix**
  */
 
+// part 3
 //declaring resulting object
 let worker = {};
 let workers = []; 
@@ -192,18 +195,22 @@ for (let i = 1; i < rows.length; i++){
 console.log(workers);
 // make sure part 2 (second option solution) is NOT commented when running the code so that "table will not have to be decleared again"
 
+console.log(workers);
+// Insert the following object at index 1:{ id: "48", name: "Barry", occupation: "Runner", age: "25" }
+workers.slice(1,0,{ id: "48", name: "Barry", occupation: "Runner", age: "25" });
+
 console.log(`
-*******************************************
-***Part 4: Sorting and Manipulating Data***
-*******************************************
+*****************************************
+***Part 4: Sorting and Manipulating Data*
+*****************************************
 `);
 /*
 It is important to know how to work with data in this format, an array of objects, as it is one of the most commonly used data formats in JavaScript.
 Using array methods, accomplish the following tasks, in order upon the result of Part 3:
-Remove the last element from the sorted array.
-Insert the following object at index 1: (use slice)
+1. Remove the last element from the sorted array.
+2. Insert the following object at index 1: (use slice)
 { id: "48", name: "Barry", occupation: "Runner", age: "25" }
-Add the following object to the end of the array:
+3. Add the following object to the end of the array:
 { id: "7", name: "Bilbo", occupation: "None", age: "111" }
 So far, the results should look like this:
 [{ id: "42", name: "Bruce", occupation: "Knight", age: "41" },
@@ -211,11 +218,29 @@ So far, the results should look like this:
  { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
  { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
  { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
-Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
+4. Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
 */
 
-// READ CLASS NOTE FOR CODE
+// 1. Removeing the last element from the sorted array { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+workers.pop();
+console.log(workers);
 
+// 3. Add the following object to the end of the array:
+// { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+workers.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
+console.log(workers);
+
+/* 4. Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group.This calculation should be accomplished using a loop.*/
+let ageAverage = 0;
+//looping for all workers in the array
+for (const worker of workers) {
+  //converting ages to numbers
+   ageAverage += Number(worker.age); 
+}
+
+// //using workers.length to know the amount of workers in the array
+ageAverage /= workers.length;
+console.log(`The age average of the working group is: ${ageAverage}`);
 
 console.log(`
 *************************
@@ -227,5 +252,22 @@ As a final task, transform the final set of data back into CSV format.
 There are a number of ways to do this; be creative!
 Once complete, be sure to submit your work according to the submission instructions at the beginning of this document.
 */
+let workData = workers.join('\n')
+//gets the 1st part of line
+let keys = Object.keys(workers[0]);
 
-// READ CLASS NOTE FOR CODE
+workData = keys.join(",") + '\n';
+
+workers.forEach((worker) =>{
+   //add value to result string for each key
+   for (const key in worker) {
+    //there will be an extra ',' at the end
+       workData += worker[key] + ','; 
+   }
+   //This should change the last char ',' to '\n'
+   workData = workData.replace(/.$/, '\n'); 
+});
+console.log("The resulting CSV file is:")
+console.log(`${workData}`);
+
+
