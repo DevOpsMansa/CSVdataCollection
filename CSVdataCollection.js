@@ -113,37 +113,37 @@ becomes
 
 // MISSING LAST ROW ON THE CODE -- FIX THAT
 
-// variable decleared for data input
-let dataStr = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
-row = [];
+// // variable decleared for data input
+// let dataStr = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
+// row = [];
 
-//final outcome table
-let table =[];
-cellData = "";
-for (const char of dataStr) {
-    switch (char) {
-        case ',':
-            //adding cells into our row
-            row.push(cellData);
-            //cleaning cell Data for the next cell to fill in
-            cellData = "";
-            break;
-        case '\n':
-           // last cell data is being addaed
-            row.push(cellData); 
-            //adding rows to our table
-            table.push(row); 
-            //clean out row
-            row = []; 
-            cellData = "";
-            break;
-        default:
-          //concat characters to get a cell data
-            cellData += char; 
-            break;
-    }
-}
-console.log(table);
+// //final outcome table
+// let table =[];
+// cellData = "";
+// for (const char of dataStr) {
+//     switch (char) {
+//         case ',':
+//             //adding cells into our row
+//             row.push(cellData);
+//             //cleaning cell Data for the next cell to fill in
+//             cellData = "";
+//             break;
+//         case '\n':
+//            // last cell data is being addaed
+//             row.push(cellData); 
+//             //adding rows to our table
+//             table.push(row); 
+//             //clean out row
+//             row = []; 
+//             cellData = "";
+//             break;
+//         default:
+//           //concat characters to get a cell data
+//             cellData += char; 
+//             break;
+//     }
+// }
+// console.log(table);
 
 console.log(`
 *******************************
@@ -179,18 +179,18 @@ Code incomplete as the 0 row is not being console logged out -*** Fix**
 //declaring resulting object
 let worker = {};
 let workers = []; 
-//go for all rows in table except the first one
-for (let i = 1; i < table.length; i++){
+//goes for all rows in table except the first one
+for (let i = 1; i < rows.length; i++){
     worker = {};
-    for(let j = 0; j < table[0].length; j++){
+    for(let j = 0; j < rows[0].length; j++){
 //create an object that has "key" as j element in 0 row and "value" as j-element in i row
-    worker[table[0][j].toLowerCase()] = table[i][j];
+    worker[rows[0][j].toLowerCase()] = rows[i][j];
     }
 //add worker at the end of our resulting array
     workers.push(worker);
 }
 console.log(workers);
-// make sure part 2 is NOT commented when running the code so that "table will not have to be decleared again"
+// make sure part 2 (second option solution) is NOT commented when running the code so that "table will not have to be decleared again"
 
 console.log(`
 *******************************************
